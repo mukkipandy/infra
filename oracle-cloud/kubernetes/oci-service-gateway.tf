@@ -13,6 +13,6 @@ resource "oci_core_service_gateway" "sgw" {
   compartment_id = oci_core_vcn.main.compartment_id
 
   services {
-    service_id = lookup(data.oci_core_services.all_oci_services.services[0], "id")
+    service_id = data.oci_core_services.all_oci_services.services[0]["id"]
   }
 }

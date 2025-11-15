@@ -1,0 +1,21 @@
+---
+
+when:
+  - event: push
+
+steps:
+  - name: fmt
+    image: bash
+    commands:
+      - tofu fmt -check -recursive -diff
+
+  - name: lint
+    image: bash
+    commands:
+      - tflint --init
+      - tflint --recursive
+
+  - name: tfsec
+    image: bash
+    commands:
+      - tfsec --force-all-dirs --no-module-downloads --exclude-downloaded-modules --ignore-hcl-errors

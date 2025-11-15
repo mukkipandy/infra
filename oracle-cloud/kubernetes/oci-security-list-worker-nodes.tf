@@ -93,7 +93,7 @@ resource "oci_core_security_list" "worker_nodes" {
   egress_security_rules {
     description      = "Allow worker nodes to communicate with OKE"
     destination_type = "SERVICE_CIDR_BLOCK"
-    destination      = lookup(data.oci_core_services.all_oci_services.services[0], "cidr_block")
+    destination      = data.oci_core_services.all_oci_services.services[0]["cidr_block"]
     protocol         = "all"
   }
 

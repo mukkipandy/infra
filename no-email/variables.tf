@@ -1,4 +1,5 @@
 variable "email_domains" {
+  type      = string
   sensitive = false
 }
 

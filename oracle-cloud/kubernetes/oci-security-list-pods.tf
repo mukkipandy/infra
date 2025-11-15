@@ -41,7 +41,7 @@ resource "oci_core_security_list" "pods" {
   egress_security_rules {
     description      = "Path Discovery"
     destination_type = "SERVICE_CIDR_BLOCK"
-    destination      = lookup(data.oci_core_services.all_oci_services.services[0], "cidr_block")
+    destination      = data.oci_core_services.all_oci_services.services[0]["cidr_block"]
     protocol         = local.protocol_numbers["ICMP"]
     icmp_options {
       type = 3
@@ -52,7 +52,7 @@ resource "oci_core_security_list" "pods" {
   egress_security_rules {
     description      = "Allow pods to communicate with OCI services"
     destination_type = "SERVICE_CIDR_BLOCK"
-    destination      = lookup(data.oci_core_services.all_oci_services.services[0], "cidr_block")
+    destination      = data.oci_core_services.all_oci_services.services[0]["cidr_block"]
     protocol         = local.protocol_numbers["TCP"]
     tcp_options {
       min = 1
