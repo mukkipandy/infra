@@ -19,3 +19,11 @@ steps:
     image: bash
     commands:
       - tfsec --force-all-dirs --no-module-downloads --exclude-downloaded-modules --ignore-hcl-errors
+
+  - name: fail-notification
+    image: bash
+    commands:
+      - mattermost-notify
+    when:
+      status:
+        - failure
